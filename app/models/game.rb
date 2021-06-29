@@ -14,4 +14,5 @@ class Game < ApplicationRecord
   }, _prefix: true
 
   validates :move, presence: true
+  validates :bot_move, presence: true
 end
