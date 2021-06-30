@@ -34,7 +34,7 @@ RSpec.describe 'Games', type: :request do
     end
 
     it 'returns a subset of games based on limit and offset' do
-      get '/games', params: { limit: 1, offset: 1 }
+      get '/games', params: { limit: 10, offset: 3 }
       expect(response).to have_http_status(:ok)
       expect(response).to eq(1)
     end

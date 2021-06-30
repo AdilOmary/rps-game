@@ -39,7 +39,7 @@ $ rails s
  - Go to the body panel, then "raw" and select "JSON" format
  - Set the URL to `http://localhost:3000/games`
 
-#####First endpoint:
+#### 1 - First endpoint :
 
 If you want to play the game, you can `POST` the player's `name` and `move` to the API.
 - Select `POST` on the dropdown button
@@ -51,3 +51,5 @@ If you want to play the game, you can `POST` the player's `name` and `move` to t
   "move": "rock"
 }
 ```
+
+The response will be sent back to the POSTMAN client, with the Bot's move and the result.
