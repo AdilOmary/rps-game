@@ -24,7 +24,7 @@ RSpec.describe 'Games', type: :request do
       post '/games', params: { move: 'rockk', name: 'Player'}
       expect(response).to have_http_status(:unprocessable_entity)
       json_response = JSON.parse(response.body)
-      expect(json_response['move']).to eq("is not valid")
+      expect(json_response['move']).to eq("should be : 'rock, paper, scissors'")
     end
   end
 end
