@@ -2,13 +2,16 @@ class GamesController < ApplicationController
 
 # CRUD Create
   def create
-    @user = User.create(name: params[:name])
-    @game = Game.create(user: @user, move: params[:move], bot_move: Game.bot_moves.keys.sample)
+    @game = Game.new(
+      user_attributes: { name: params[:name] },
+      move: params[:move],
+      bot_move: Game.bot_moves.keys.sample
+    )
 
     if @game.save
       render json: {
         moves: [{
-                name: @user.name,
+                name: @game.user.name,
                 move: @game.move
               }, {
                 name: 'Bot',

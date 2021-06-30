@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   belongs_to :user
 
+  accepts_nested_attributes_for :user
+
   enum move: [:rock, :paper, :scissors]
 
   enum bot_move: [:rock, :paper, :scissors], _prefix: true

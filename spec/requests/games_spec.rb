@@ -12,5 +12,12 @@ RSpec.describe 'Games', type: :request do
         post '/games', params: { move: 'rock', name: 'adil'}
       }.to change(Game, :count).by(1)
     end
+
+    it "displays an error if the user's name is blank" do
+      post '/games', params: { move: 'rock', name: ''}
+      expect(response).to have_http_status(:unprocessable_entity)
+      json_response = JSON.parse(response.body)
+      expect(json_response['user.name']).to eq(["can't be blank"])
+    end
   end
 end
