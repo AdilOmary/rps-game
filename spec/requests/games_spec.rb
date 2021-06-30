@@ -19,5 +19,12 @@ RSpec.describe 'Games', type: :request do
       json_response = JSON.parse(response.body)
       expect(json_response['user.name']).to eq(["can't be blank"])
     end
+
+    it 'displays an error if the move is not valid' do
+      post '/games', params: { move: 'rockk', name: 'Player'}
+      expect(response).to have_http_status(:unprocessable_entity)
+      json_response = JSON.parse(response.body)
+      expect(json_response['move']).to eq("is not valid")
+    end
   end
 end
