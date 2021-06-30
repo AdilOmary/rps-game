@@ -54,6 +54,12 @@ If you want to play the game, you can `POST` the player's `name` and `move` to t
 
 The response will be sent back to the POSTMAN client, with the Bot's move and the result.
 
+### 2. Second endpoint:
+
+To get the past games history, send a `GET` request to the URL, you can specify `limit` and `offset` options for pagination:
+- Select `GET` on the dropdown button
+- Add the options to the url (type `?` followed by the key value pairs separated by `&`), e.g: `http://localhost:3000/games?limit=2&offset=4` will get the first 2 items starting from the 4th one.
+- Click "send", you will receive a response with an array of the requiered records.
 
 
 How to improve the code :
