@@ -62,7 +62,7 @@ To get the past games history, send a `GET` request to the URL, you can specify 
 - Click "send", you will receive a response with an array of the requiered records.
 
 
-How to improve the code :
+## 3 - How to improve the code :
 - Refactor the functions and make it less long.
 - Serializer the json_response.
 - Improve the errors's handling.
