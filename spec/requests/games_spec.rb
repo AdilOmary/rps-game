@@ -36,9 +36,24 @@ RSpec.describe 'Games', type: :request do
 
       get '/games', params: { limit: 1 }
       expect(response).to have_http_status(:ok)
+
       json_response = JSON.parse(response.body)
       expect(json_response['moves'].size).to eq(1)
+      expect(json_response['moves'][0]['moves'][0]['name']).to eq('Player 3')
+
+      get '/games', params: { limit: 1, offset: 1 }
+      expect(response).to have_http_status(:ok)
+
+      json_response = JSON.parse(response.body)
+      expect(json_response['moves'].size).to eq(1)
+      expect(json_response['moves'][0]['moves'][0]['name']).to eq('Player 2')
+
+      get '/games', params: { limit: 2, offset: 1 }
+      expect(response).to have_http_status(:ok)
+
+      json_response = JSON.parse(response.body)
+      expect(json_response['moves'].size).to eq(2)
+      expect(json_response['moves'][1]['moves'][0]['name']).to eq('Player 1')
     end
   end
 end
-

@@ -36,8 +36,21 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.order(created_at: :desc).limit(params[:limit]).offset(params[:offset])
+
     render json: {
-      moves: @games,
+      moves: @games.map do |game|
+        {
+          moves: [{
+                    name: game.user.name,
+                    move: game.move
+                  }, {
+                    name: 'Bot',
+                    move: game.bot_move
+                  }],
+          results: game.who_wins,
+          created_at: game.created_at
+        }
+      end,
       total_moves: Game.count
     }
   end
