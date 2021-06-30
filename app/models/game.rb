@@ -1,21 +1,21 @@
 class Game < ApplicationRecord
   belongs_to :user
 
-  enum move: [:rock, :paper, :scissor]
+  enum move: [:rock, :paper, :scissors]
 
-  enum bot_move: [:rock, :paper, :scissor], _prefix: true
+  enum bot_move: [:rock, :paper, :scissors], _prefix: true
 
-  validates :move, presence: true
-  validates :bot_move, presence: true
+  validates :move, inclusion: ['rock', 'paper', 'scissors']
+  validates :bot_move, inclusion: ['rock', 'paper', 'scissors']
 
   def who_wins
     if move == bot_move
       "It's a draw"
-    elsif move == "Rock" && bot_move == "Scissors"
+    elsif move == "rock" && bot_move == "scissors"
       "#{user.name} wins"
-    elsif move == "Scissors" && bot_move == "Paper"
+    elsif move == "scissors" && bot_move == "paper"
       "#{user.name} wins"
-    elsif move == "Paper" && bot_move == "Rock"
+    elsif move == "paper" && bot_move == "rock"
       "#{user.name} wins"
     else
       "Bot wins !"
