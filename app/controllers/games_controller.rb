@@ -34,7 +34,6 @@ class GamesController < ApplicationController
     end
   end
 
-# TODO : Add the winner on each game
   def index
     @games = Game.order(created_at: :desc).limit(params[:limit]).offset(params[:offset])
     render json: {

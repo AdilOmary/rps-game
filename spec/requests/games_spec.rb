@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Games', type: :request do
-  describe 'POST /index' do
+  describe 'POST /games' do
     it 'returns the moves' do
       post '/games', params: { move: 'rock', name: 'Player' }
       expect(response).to have_http_status(:created)
@@ -28,17 +28,17 @@ RSpec.describe 'Games', type: :request do
     end
   end
 
-  describe 'GET /index' do
-    it 'returns a subset of games based on limit' do
+  describe 'GET /games' do
+    it 'returns a subset of games based on limit and offset' do
+      game_1 = Game.create!(move: 'rock', bot_move: 'rock', user_attributes: { name: 'Player 1'})
+      game_2 = Game.create!(move: 'rock', bot_move: 'rock', user_attributes: { name: 'Player 2'})
+      game_3 = Game.create!(move: 'rock', bot_move: 'rock', user_attributes: { name: 'Player 3'})
+
       get '/games', params: { limit: 1 }
       expect(response).to have_http_status(:ok)
-      expect(response).to eq(1)
-    end
-
-    it 'returns a subset of games based on limit and offset' do
-      get '/games', params: { limit: 10, offset: 3 }
-      expect(response).to have_http_status(:ok)
-      expect(response).to eq(1)
+      json_response = JSON.parse(response.body)
+      expect(json_response['moves'].size).to eq(1)
     end
   end
+end
 
