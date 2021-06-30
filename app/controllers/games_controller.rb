@@ -36,10 +36,10 @@ class GamesController < ApplicationController
 
 # TODO : Add the winner on each game
   def index
-    @games = Game.order(created_at: :desc)
+    @games = Game.order(created_at: :desc).limit(params[:limit]).offset(params[:offset])
     render json: {
       moves: @games,
-      total_moves: Game.count,
+      total_moves: Game.count
     }
   end
 end

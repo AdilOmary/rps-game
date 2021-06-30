@@ -1,24 +1,28 @@
-# README
+# Rock/Paper/Scissors Game API with Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Initialization
 
-Things you may want to cover:
+1. Clone the project with :
+```
+$ git clone https://github.com/AdilOmary/rps-game
+```
+2. Change directory to `rps-game`:
+```
+$ cd rps-game
+```
+3. Download dependencies:
 
-* Ruby version
+```
+$ bundle install
+```
 
-* System dependencies
+4. Setup the database:
+```
+$ rails db:create
+$ rails db:migrate
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+5. Start the server with the following command :
+```
+$ rails s
+```

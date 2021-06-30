@@ -26,5 +26,17 @@ RSpec.describe 'Games', type: :request do
       json_response = JSON.parse(response.body)
       expect(json_response['move']).to eq("should be : 'rock, paper, scissors'")
     end
+
+    it 'returns a subset of games based on limit' do
+      get '/games', params: { limit: 1 }
+      expect(response).to have_http_status(:ok)
+      expect(response).to eq(1)
+    end
+
+    it 'returns a subset of games based on limit and offset' do
+      get '/games', params: { limit: 1, offset: 1 }
+      expect(response).to have_http_status(:ok)
+      expect(response).to eq(1)
+    end
   end
 end
