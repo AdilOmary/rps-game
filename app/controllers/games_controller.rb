@@ -22,7 +22,7 @@ class GamesController < ApplicationController
       render json: {
         moves: [{
                 name: @game.user.name,
-                move: @game.move
+                move: @game.move,
               }, {
                 name: 'Bot',
                 move: @game.bot_move
@@ -34,8 +34,12 @@ class GamesController < ApplicationController
     end
   end
 
+# TODO : Add the winner on each game
   def index
     @games = Game.order(created_at: :desc)
-    render json: @games.to_json
+    render json: {
+      moves: @games,
+      total_moves: Game.count,
+    }
   end
 end
