@@ -53,3 +53,10 @@ If you want to play the game, you can `POST` the player's `name` and `move` to t
 ```
 
 The response will be sent back to the POSTMAN client, with the Bot's move and the result.
+
+
+
+How to improve the code :
+- Refactor the functions and make it less long.
+- Serializer the json_response.
+- Improve the errors's handling.

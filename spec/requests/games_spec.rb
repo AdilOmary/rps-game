@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Games', type: :request do
-  describe 'GET /index' do
+  describe 'POST /index' do
     it 'returns the moves' do
       post '/games', params: { move: 'rock', name: 'Player' }
       expect(response).to have_http_status(:created)
@@ -26,7 +26,9 @@ RSpec.describe 'Games', type: :request do
       json_response = JSON.parse(response.body)
       expect(json_response['move']).to eq("should be : 'rock, paper, scissors'")
     end
+  end
 
+  describe 'GET /index' do
     it 'returns a subset of games based on limit' do
       get '/games', params: { limit: 1 }
       expect(response).to have_http_status(:ok)
@@ -39,4 +41,4 @@ RSpec.describe 'Games', type: :request do
       expect(response).to eq(1)
     end
   end
-end
+
