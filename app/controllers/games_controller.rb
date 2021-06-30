@@ -33,4 +33,9 @@ class GamesController < ApplicationController
       render json: @game.errors, status: :unprocessable_entity
     end
   end
+
+  def index
+    @games = Game.order(created_at: :desc)
+    render json: @games.to_json
+  end
 end
